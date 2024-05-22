@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/widget/TempCard.dart';
 
@@ -10,6 +9,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,45 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   const SizedBox(
-                    height: 50,
+                    height: 120,
                   ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.sunny,
+                            color: Colors.yellow,
+                            size: 100,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "${now.hour}:${now.minute.toString().padLeft(2, '0')} PM",
+                                style: const TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "${now.day}/${now.month}/${now.year}",
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  const Spacer(),
                   TempCard(
                     title: "Temperature",
                     subtitle: "25°C",
